@@ -172,6 +172,7 @@ class GitHubApp(object):
         return decorator
 
     def _validate_request(self):
+        print("_validate_request: enter")
         if not request.is_json:
             raise GitHubAppValidationError('Invalid HTTP Content-Type header for JSON body '
                                            '(must be application/json or application/*+json).')
@@ -187,6 +188,8 @@ class GitHubApp(object):
             raise GitHubAppValidationError('Missing X-GitHub-Event HTTP header.')
 
         action = request.json.get('action')
+
+        print("_validate_request: Requested Validated")
 
         return event, action
 
